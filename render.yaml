@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: ce-composio-api
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: COMPOSIO_API_KEY
+        sync: false
+      - key: CE_API_TOKEN
+        generateValue: true
+  
